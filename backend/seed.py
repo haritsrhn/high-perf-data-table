@@ -1,15 +1,16 @@
 import asyncio
 from faker import Faker
 from sqlalchemy.ext.asyncio import AsyncSession
-from .database import engine, Base, AsyncSessionLocal
-from .models import Product
+from sqlalchemy import text
+from backend.database import engine, Base, AsyncSessionLocal
+from backend.models import Product
 
 fake = Faker()
 
 async def seed_products(n: int = 100_000):
     async with AsyncSessionLocal() as session:
         async with session.begin():
-            await session.execute("DELETE FROM products")  # clean slate
+            await session.execute(text("DELETE FROM products"))  # clean slate
         batch_size = 1000
         for i in range(0, n, batch_size):
             products = [
