@@ -62,3 +62,17 @@ async def read_products(
         return data
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/products/{product_id}")
+async def get_product(product_id: int, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Product).where(Product.id == product_id))
+    product = result.scalar_one_or_none()
+    if not product:
+        raise HTTPException(status_code=404, detail="Product Not Found")
+    return {
+        "id": product.id,
+        "name": product.name,
+        "description": product.description,
+        "price": product.price,
+        "category": product.category
+    }
