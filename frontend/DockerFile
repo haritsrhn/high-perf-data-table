@@ -1,0 +1,13 @@
+# Install deps and build
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build  # Ensure the build step runs successfully
+
+# Serve the app
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app ./
+EXPOSE 3000
+CMD ["npm", "run", "start"]
