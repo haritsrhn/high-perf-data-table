@@ -24,3 +24,9 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Database
+db/
+
+# Redis
+redis/
