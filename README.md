@@ -20,8 +20,8 @@ This project is a full-stack application featuring an ultra-fast data table capa
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/haritsrhn/high-perf-data-table.git
+   cd high-perf-data-table
 2. Create a .env file based on .env.example.
 3. Start the entire application:
     ```bash
